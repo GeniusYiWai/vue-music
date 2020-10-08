@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "nprogress": "^0.2.0",
+    "vant": "^2.10.9",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
@@ -17,8 +19,12 @@
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "amfe-flexible": "^2.2.1",
+    "axios": "^0.20.0",
+    "dayjs": "^1.9.1",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "lodash": "^4.17.20",
     "vue-template-compiler": "^2.6.11"
   }
 }
