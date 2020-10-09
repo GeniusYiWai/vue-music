@@ -8,7 +8,7 @@
 import { login } from "@/api/my";
 export default {
   created() {
-    this.login();
+    // this.login();
   },
   methods: {
     async login() {

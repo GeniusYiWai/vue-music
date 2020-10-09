@@ -1,34 +1,29 @@
 <template>
-  <div class="playlist-container" ref="wrapper">
-    <ul class="playlist-wrapper">
-      <li v-for="(playlist, index) in playlistData" :key="index">
-        <img :src="playlist.picUrl" />
+  <div class="scroll-container" ref="wrapper">
+    <ul class="scroll-wrapper">
+      <li v-for="(item, index) in scrollData" :key="index">
+        <img :src="item.picUrl" />
+        <p>{{ item.name }}</p>
       </li>
     </ul>
   </div>
 </template>
-
 <script>
 //引入better-scroll
 import BScroll from "better-scroll";
-
 export default {
   props: {
-    playlistData: {
+    scrollData: {
       type: Array,
       required: true,
     },
   },
-  name: "PlayList",
-  components: {},
+  name: "ScrollList",
   data() {
     return {
       scroll: null,
     };
   },
-  computed: {},
-  watch: {},
-  created() {},
   mounted() {
     //目前会报错 暂时将代码注释 解决了问题
     this.$nextTick(() => {
@@ -41,21 +36,24 @@ export default {
       });
     });
   },
-  methods: {},
 };
 </script>
 
 <style scoped lang='less'>
-.playlist-container {
-  .playlist-wrapper {
+.scroll-container {
+  .scroll-wrapper {
     display: flex;
     overflow-x: auto;
     li {
       width: 35%;
+      text-align: center;
       img {
         height: 100px;
         border-radius: 5px;
-        margin: 10px;
+        margin: 0 10px;
+      }
+      p {
+        font-size: 12px;
       }
     }
   }

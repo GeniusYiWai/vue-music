@@ -2,23 +2,24 @@
   <div>
     <Swiper :bannerData="bannerData" />
     <Summary summary="懂你的精选歌单" showMore />
-    <PlayList :playlistData="playlistData" />
+    <ScrollList :scrollData="playlistData" />
+    <Summary summary="懂你的精选歌曲" showMore />
+    <Song :songData="songData" />
   </div>
 </template>
-
 <script>
 import { getBanner, getRecommendPlayList, getRecommendSongs } from "@/api/home";
-
 import Swiper from "./components/swiper";
-import PlayList from "./components/playlist";
+import Song from "./components/song";
 import Summary from "@/components/summary";
-
+import ScrollList from "@/components/scroll-list";
 export default {
   name: "Home",
   components: {
     Swiper,
+    Song,
+    ScrollList,
     Summary,
-    PlayList,
   },
   data() {
     return {
@@ -33,6 +34,8 @@ export default {
       bannerData: [],
       //推荐歌单数据
       playlistData: [],
+      //推荐歌曲数据
+      songData: [],
     };
   },
   computed: {},
@@ -51,13 +54,12 @@ export default {
     },
     async loadPlayList() {
       const { data } = await getRecommendPlayList(this.playlistCount);
-      // console.log(data);
       this.playlistData = data.result;
     },
     async loadSongs() {
       const { data } = await getRecommendSongs();
       console.log(data);
-      // this.playlistData = data.result;
+      this.songData = data.data.dailySongs;
     },
   },
 };
