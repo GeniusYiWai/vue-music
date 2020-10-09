@@ -7,7 +7,8 @@
           <p>{{ item.name }}</p>
         </div>
       </swiper-slide>
-    </swiper><van-divider />
+    </swiper>
+    <van-divider />
   </div>
 </template>
 <script>

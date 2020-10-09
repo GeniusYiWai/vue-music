@@ -6,8 +6,9 @@
           <img :src="icon.iconUrl" />
           <p>{{ icon.name }}</p>
         </div>
-      </swiper-slide> </swiper
-    ><van-divider />
+      </swiper-slide>
+    </swiper>
+    <van-divider />
   </div>
 </template>
 

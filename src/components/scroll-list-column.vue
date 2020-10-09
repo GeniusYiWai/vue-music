@@ -7,24 +7,24 @@
           <template v-if="song.al">
             <img :src="song.al.picUrl" />
             <p class="name">
-              {{ song.al.name | ellipsis }}
-              <span class="singer">-{{ song.ar[0].name | ellipsis }}</span>
+              {{ song.al.name | ellipsis(20) }}
+              <span class="singer">-{{ song.ar[0].name | ellipsis(20) }}</span>
             </p>
           </template>
           <template v-if="song.album">
             <img :src="song.album.blurPicUrl" />
             <p class="name">
-              {{ song.album.name | ellipsis }}
+              {{ song.album.name | ellipsis(20) }}
               <span class="singer"
-                >-{{ song.album.artists[0].name | ellipsis }}</span
+                >-{{ song.album.artists[0].name | ellipsis(20) }}</span
               >
             </p>
           </template>
           <template v-if="song.company">
             <img :src="song.blurPicUrl" />
             <p class="name">
-              {{ song.name | ellipsis }}
-              <span class="singer">-{{ song.company | ellipsis }}</span>
+              {{ song.name | ellipsis(20) }}
+              <span class="singer">-{{ song.company | ellipsis(20) }}</span>
             </p>
           </template>
         </div>

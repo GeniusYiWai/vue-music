@@ -23,6 +23,7 @@ export default {
 
 <style scoped lang='less'>
 .swiper {
+  margin-bottom: 10px;
   height: 150px;
   img {
     width: 100%;
