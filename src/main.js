@@ -33,6 +33,15 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 Vue.use(VueAwesomeSwiper, )
 
+
+import {
+  ellipsis 
+} from '@/utils/filters'
+
+Vue.filter('ellipsis', ellipsis )
+
+
+
 Vue.config.productionTip = false
 
 new Vue({

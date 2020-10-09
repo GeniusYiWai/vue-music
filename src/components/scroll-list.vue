@@ -1,18 +1,19 @@
 <template>
-  <div class="scroll-container" ref="wrapper">
-    <ul class="scroll-wrapper">
-      <li v-for="(item, index) in scrollData" :key="index">
-        <img :src="item.picUrl" />
-        <p>{{ item.name }}</p>
-      </li>
-    </ul>
+  <div class="scroll-container">
+    <swiper ref="mySwiper" :options="swiperOptions">
+      <swiper-slide v-for="(item, index) in scrollData" :key="index">
+        <div class="scroll-wrapper">
+          <img :src="item.picUrl" />
+          <p>{{ item.name }}</p>
+        </div>
+      </swiper-slide>
+    </swiper><van-divider />
   </div>
 </template>
 <script>
-//引入better-scroll
-import BScroll from "better-scroll";
 export default {
   props: {
+    //滚动数据
     scrollData: {
       type: Array,
       required: true,
@@ -21,20 +22,27 @@ export default {
   name: "ScrollList",
   data() {
     return {
-      scroll: null,
+      swiperOptions: {
+        pagination: {
+          el: ".swiper-pagination",
+        },
+        //每行显示数量
+        slidesPerView: 3,
+        //自动切换
+        spaceBetween: 20,
+        //不自动贴合
+        freeMode: true,
+        //自动播放
+        autoplay: {
+          //延迟
+          delay: 3000,
+          //最后一个是否停止播放
+          stopOnLastSlide: false,
+          /* 触摸滑动后是否继续轮播 */
+          disableOnInteraction: false,
+        },
+      },
     };
-  },
-  mounted() {
-    //目前会报错 暂时将代码注释 解决了问题
-    this.$nextTick(() => {
-      this.scroll = new BScroll(this.$refs.wrapper, {
-        startX: 0, // 配置的详细信息请参考better-scroll的官方文档，这里不再赘述
-        click: true,
-        scrollX: true,
-        scrollY: false,
-        eventPassthrough: "vertical",
-      });
-    });
   },
 };
 </script>
@@ -42,19 +50,13 @@ export default {
 <style scoped lang='less'>
 .scroll-container {
   .scroll-wrapper {
-    display: flex;
-    overflow-x: auto;
-    li {
-      width: 35%;
-      text-align: center;
-      img {
-        height: 100px;
-        border-radius: 5px;
-        margin: 0 10px;
-      }
-      p {
-        font-size: 12px;
-      }
+    text-align: center;
+    img {
+      height: 100px;
+      border-radius: 5px;
+    }
+    p {
+      font-size: 12px;
     }
   }
 }

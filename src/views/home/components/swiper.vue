@@ -11,6 +11,7 @@
 <script>
 export default {
   props: {
+    //轮播图数据
     bannerData: {
       type: Array,
       required: true,

@@ -10,24 +10,17 @@
 <script>
 export default {
   props: {
+    //描述
     summary: {
       type: String,
       required: true,
     },
+    //是否展示 显示更多按钮
     showMore: {
       type: Boolean,
     },
   },
   name: "Summary",
-  components: {},
-  data() {
-    return {};
-  },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
-  methods: {},
 };
 </script>
 
