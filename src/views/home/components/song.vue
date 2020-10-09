@@ -1,5 +1,18 @@
 <template>
-  <div class="song-container" ref="wrapper"></div>
+  <div>
+    <swiper ref="mySwiper" :options="swiperOptions">
+      <swiper-slide v-for="(song, index) in songData" :key="index">
+        <div class="song-wrapper">
+          <img :src="song.al.picUrl" />
+          <p class="name">
+            {{ song.al.name }}
+            <span class="singer">-{{ song.ar[0].name }}</span>
+          </p>
+        </div>
+      </swiper-slide>
+      <!-- <div class="swiper-pagination" slot="pagination"></div> -->
+    </swiper>
+  </div>
 </template>
 
 <script>
@@ -15,26 +28,42 @@ export default {
   name: "Song",
   data() {
     return {
-      scroll: null,
+      swiperOptions: {
+        pagination: {
+          el: ".swiper-pagination",
+        },
+        slidesPerView: 2,
+        slidesPerColumn: 3,
+        slidesPerColumnFill: "row",
+        autoplay: true,
+
+        // Some Swiper option/callback...
+      },
     };
   },
   computed: {},
   watch: {},
   created() {},
-  mounted() {
-    //目前会报错 暂时将代码注释 解决了问题
-    // this.$nextTick(() => {
-    //   this.scroll = new BScroll(this.$refs.wrapper, {
-    //     startX: 0, // 配置的详细信息请参考better-scroll的官方文档，这里不再赘述
-    //     click: true,
-    //     scrollX: true,
-    //     scrollY: false,
-    //     eventPassthrough: "vertical",
-    //   });
-    // });
-  },
+  mounted() {},
 };
 </script>
 
 <style scoped lang='less'>
+.song-wrapper {
+  display: flex;
+  height: 70px;
+  margin: 5px 10px;
+  img {
+    height: 70px;
+    object-fit: cover;
+    margin-right: 5px;
+  }
+  .name {
+    font-size: 12px;
+    .singer {
+      color: #666;
+      font-size: 10px;
+    }
+  }
+}
 </style>

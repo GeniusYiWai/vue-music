@@ -28,8 +28,10 @@ import 'amfe-flexible'
 import "nprogress/nprogress.css";
 
 
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 
-
+import 'swiper/css/swiper.css'
+Vue.use(VueAwesomeSwiper, )
 
 Vue.config.productionTip = false
 
