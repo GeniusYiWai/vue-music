@@ -1,34 +1,21 @@
 <template>
-  <div>
-      my
-  </div>
+  <div>my</div>
 </template>
 
 <script>
 export default {
-name:'My',
-components:{},
+  name: "My",
+  components: {},
   data() {
-    return {
-
-    };
+    return {};
   },
-  computed:{
-
-  },
-  watch:{},
-  created() {
-
-  },
-  mounted() {
-
-  },
-  methods: {
-
-  },
-}
+  computed: {},
+  watch: {},
+  created() {},
+  mounted() {},
+  methods: {},
+};
 </script>
 
 <style scoped lang='less'>
-
 </style>

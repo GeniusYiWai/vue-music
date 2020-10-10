@@ -1,6 +1,6 @@
 <template>
   <div class="rank-container">
-    <Summary summary="特色榜" />
+    <Summary summary="榜单推荐" />
 
     <ScrollListColumn :scrollData="recRankList" />
 

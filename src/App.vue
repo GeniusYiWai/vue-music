@@ -1,7 +1,10 @@
 <template>
   <div>
     <!-- App路由出口 -->
+<keep-alive>
     <router-view />
+
+</keep-alive>
   </div>
 </template>
 <script>
