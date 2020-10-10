@@ -27,9 +27,15 @@
               <span class="singer">-{{ song.company | ellipsis(20) }}</span>
             </p>
           </template>
+          <template v-if="song.updateFrequency">
+            <img :src="song.coverImgUrl" />
+            <p class="name">
+              {{ song.name | ellipsis(20) }}
+            </p>
+          </template>
         </div>
-      </swiper-slide>
-    </swiper><van-divider />
+      </swiper-slide> </swiper
+    ><van-divider />
   </div>
 </template>
 
@@ -52,7 +58,7 @@ export default {
         slidesPerView: 2,
         slidesPerColumn: 3,
         slidesPerColumnFill: "row",
-     
+        updateOnImagesReady: true,
         autoplay: {
           delay: 3000,
           stopOnLastSlide: false /* 触摸滑动后是否继续轮播 */,

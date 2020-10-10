@@ -5,7 +5,9 @@
       :key="index"
       class="hotSearch-wrapper"
     >
-      <p class="index">{{ index + 1 }}</p>
+      <p class="index" :class="{ hot: index == 0 || index == 1 || index == 2 }">
+        {{ index + 1 }}
+      </p>
       <p class="name">{{ hot.searchWord }}</p>
       <img :src="hot.iconUrl" alt="" class="icon" />
     </div>
@@ -40,6 +42,7 @@ export default {
 <style scoped lang='less'>
 .hotSearch-container {
   display: flex;
+  padding: 0 15px;
   flex-wrap: wrap;
   .hotSearch-wrapper {
     width: 50%;
@@ -47,15 +50,17 @@ export default {
     line-height: 40px;
     display: flex;
     font-size: 14px;
-
     .index {
       width: 20px;
-      margin-left: 40px;
+      // margin-left: 40px;
     }
     .icon {
       margin-top: 20px;
       margin-left: 2px;
       height: 10px;
+    }
+    .hot {
+      color: #d43c33;
     }
   }
 }

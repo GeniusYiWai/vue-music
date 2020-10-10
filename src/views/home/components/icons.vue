@@ -30,6 +30,7 @@ export default {
         },
         slidesPerView: 5,
         spaceBetween: 10,
+        updateOnImagesReady : true,
       },
     };
   },

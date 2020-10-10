@@ -42,6 +42,7 @@ export default {
           /* 触摸滑动后是否继续轮播 */
           disableOnInteraction: false,
         },
+        updateOnImagesReady : true,
       },
     };
   },

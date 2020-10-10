@@ -32,6 +32,7 @@ export default {
         slidesPerView: "auto",
         //不自动贴合
         freeMode: true,
+        updateOnImagesReady: true,
       },
     };
   },

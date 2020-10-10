@@ -20,6 +20,10 @@ const routes = [{
         name: 'search',
         component: () => import('../views/search/'),
       }, {
+        path: 'rank',
+        name: 'rank',
+        component: () => import('../views/rank/'),
+      }, {
         path: 'my',
         name: 'my',
         component: () => import('../views/my/'),
