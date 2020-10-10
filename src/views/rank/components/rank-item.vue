@@ -1,9 +1,13 @@
 <template>
   <div class="rankItem-container">
     <div class="rankItem-cover">
+      <!-- 排行榜封面 -->
+
       <img :src="rankData.coverImgUrl" />
+      <!-- 排行榜更新时间 -->
       <p class="updateFrequency">{{ rankData.updateFrequency }}</p>
     </div>
+    <!-- 排行榜歌曲 -->
     <div class="rankItem-songs">
       <p v-for="(song, index) in rankData.tracks" :key="index">
         {{ index + 1 }}.{{ song.first }}-{{ song.second }}
@@ -15,21 +19,13 @@
 <script>
 export default {
   props: {
+    //排行榜数据
     rankData: {
       type: Object,
       required: true,
     },
   },
   name: "RankItem",
-  components: {},
-  data() {
-    return {};
-  },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
-  methods: {},
 };
 </script>
 
@@ -38,6 +34,7 @@ export default {
   padding: 0 10px;
   display: flex;
   align-items: center;
+  margin-top: 10px;
   .rankItem-cover {
     position: relative;
     img {
@@ -47,7 +44,7 @@ export default {
     }
     .updateFrequency {
       position: absolute;
-      bottom: 0;
+      bottom: 10px;
       left: 3px;
       color: #fff;
       font-size: 12px;
@@ -55,7 +52,8 @@ export default {
   }
   .rankItem-songs {
     p {
-      font-size: 12px;
+      font-size: 13px;
+      margin-top: 10px;
     }
   }
 }

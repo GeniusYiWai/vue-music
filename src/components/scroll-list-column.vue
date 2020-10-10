@@ -4,6 +4,8 @@
       <swiper-slide v-for="(song, index) in scrollData" :key="index">
         <div class="song-wrapper">
           <!-- 由于组件需要在不同地方使用 传入的数据不同 所以需要对传入数据进行判断 才能正常展示图片和文字 -->
+
+          <!-- 显示歌曲 -->
           <template v-if="song.al">
             <img :src="song.al.picUrl" />
             <p class="name">
@@ -11,6 +13,7 @@
               <span class="singer">-{{ song.ar[0].name | ellipsis(20) }}</span>
             </p>
           </template>
+          <!-- 显示歌单 -->
           <template v-if="song.album">
             <img :src="song.album.blurPicUrl" />
             <p class="name">
@@ -20,6 +23,7 @@
               >
             </p>
           </template>
+
           <template v-if="song.company">
             <img :src="song.blurPicUrl" />
             <p class="name">
@@ -27,6 +31,7 @@
               <span class="singer">-{{ song.company | ellipsis(20) }}</span>
             </p>
           </template>
+          <!-- 显示排行榜 -->
           <template v-if="song.updateFrequency">
             <img :src="song.coverImgUrl" />
             <p class="name">
@@ -75,6 +80,7 @@ export default {
   display: flex;
   height: 70px;
   margin: 5px 10px;
+  align-items: center;
   img {
     height: 70px;
     object-fit: cover;

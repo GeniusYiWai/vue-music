@@ -2,6 +2,7 @@
   <div class="scroll-container">
     <swiper ref="mySwiper" :options="swiperOptions">
       <swiper-slide v-for="(item, index) in scrollData" :key="index">
+        <!-- 一行一列滚动 -->
         <div class="scroll-wrapper">
           <img :src="item.picUrl" />
           <p>{{ item.name }}</p>

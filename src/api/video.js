@@ -25,3 +25,17 @@ export const videoCateDetail = (id, offset, timestamp) => {
         }
     })
 }
+/*
+获取视频播放地址
+*/
+export const videoUrl = id => {
+
+    return request({
+        method: 'GET',
+        url: '/video/url',
+        params: {
+            id
+
+        }
+    })
+}
