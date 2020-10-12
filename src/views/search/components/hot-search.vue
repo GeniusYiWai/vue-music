@@ -1,15 +1,26 @@
 <template>
-  <div class="hotSearch-container">
-    <div
-      v-for="(hot, index) in hotSearch"
-      :key="index"
-      class="hotSearch-wrapper"
-    >
-      <p class="index" :class="{ hot: index == 0 || index == 1 || index == 2 }">
-        {{ index + 1 }}
-      </p>
-      <p class="name">{{ hot.searchWord }}</p>
-      <img :src="hot.iconUrl" alt="" class="icon" />
+  <div>
+    <van-loading
+      type="spinner"
+      color="#1989fa"
+      v-if="loading"
+      class="loading"
+    />
+    <div v-if="!loading" class="hotSearch-container">
+      <div
+        v-for="(hot, index) in hotSearch"
+        :key="index"
+        class="hotSearch-wrapper"
+      >
+        <p
+          class="index"
+          :class="{ hot: index == 0 || index == 1 || index == 2 }"
+        >
+          {{ index + 1 }}
+        </p>
+        <p class="name">{{ hot.searchWord }}</p>
+        <img :src="hot.iconUrl" alt="" class="icon" />
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +32,7 @@ export default {
   data() {
     return {
       hotSearch: [],
+      loading: true,
     };
   },
   computed: {},
@@ -32,14 +44,20 @@ export default {
   methods: {
     async loadHotSearch() {
       const { data } = await hotSearch();
-      //   console.log(data);
       this.hotSearch = data.data;
+      this.loading = false;
     },
   },
 };
 </script>
 
 <style scoped lang='less'>
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .hotSearch-container {
   display: flex;
   padding: 0 15px;

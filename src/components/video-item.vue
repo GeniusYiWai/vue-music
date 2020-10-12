@@ -2,11 +2,8 @@
   <div class="videoItem-container">
     <!-- 视频封面 -->
 
-    <div class="video-cover-wrapper"  v-show="!isPlayVideo">
-      <img
-        :src="videoData.data.coverUrl"
-        class="video-cover"
-      />
+    <div class="video-cover-wrapper" v-show="!isPlayVideo">
+      <img :src="videoData.data.coverUrl" class="video-cover" />
       <p class="playTime">
         <!-- 播放次数 -->
         <van-icon name="fire-o" />
@@ -21,6 +18,7 @@
       controls
       class="videoPlyer"
       ref="video"
+      
     ></video>
     <!-- 视频标题 -->
     <p class="video-title">{{ videoData.data.title }}</p>
@@ -146,7 +144,7 @@ export default {
       }
     }
     .action {
-      width: 100px;
+      width: 150px;
       justify-content: space-around;
       display: flex;
       align-items: center;

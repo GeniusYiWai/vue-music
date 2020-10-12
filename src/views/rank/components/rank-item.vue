@@ -34,7 +34,7 @@ export default {
   padding: 0 10px;
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-bottom: 10px;
   .rankItem-cover {
     position: relative;
     img {

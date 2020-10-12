@@ -1,6 +1,6 @@
 <template>
   <div class="videoList-container">
-    <!-- 下拉刷新 上拉加载 -->
+    <!-- 下拉刷新 -->
     <van-pull-refresh
       v-model="refreshing"
       @refresh="onRefresh"
@@ -63,10 +63,13 @@ export default {
   },
   methods: {
     videoClear() {
-      this.$refs.videoItem.forEach((x) => {
-        x.pause();
-        x.isPlayVideo = false;
-      });
+      //这里要加个判断不然会报错
+      if (this.$refs.videoItem) {
+        this.$refs.videoItem.forEach((x) => {
+          x.pause();
+          x.isPlayVideo = false;
+        });
+      }
     },
     onVideoPlay(index) {
       this.$refs.videoItem.forEach((x) => {

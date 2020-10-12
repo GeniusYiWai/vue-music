@@ -10,17 +10,17 @@
     1行1列
      -->
     <Summary summary="人气歌单推荐" showMore />
-    <ScrollList :scrollData="hotPlaylistData" />
+    <ScrollList :scrollData="hotPlaylistData" @onSongSheet="onSongSheet" />
     <!-- 懂你的精选歌曲 
     2行3列
     -->
     <Summary summary="懂你的精选歌曲" showMore />
-    <ScrollListColumn :scrollData="songData" />
+    <ScrollListColumn :scrollData="songData" @onMusicPlay="onMusicPlay" />
     <!-- 懂你的精选歌单
     1行1列
      -->
     <Summary summary="懂你的精选歌单" />
-    <ScrollList :scrollData="recPlaylistData" />
+    <ScrollList :scrollData="recPlaylistData" @onSongSheet="onSongSheet"/>
     <Newest />
   </div>
 </template>
@@ -93,6 +93,13 @@ export default {
   },
   mounted() {},
   methods: {
+    onSongSheet(id) {
+      this.$router.push("/songsheet?from=songsheet");
+      this.$store.commit("setSongSheetId", id);
+    },
+    onMusicPlay(id) {
+      this.$store.commit("setMusicId", id);
+    },
     async loadIcons() {
       const { data } = await getIcons();
       this.icons = data.data;

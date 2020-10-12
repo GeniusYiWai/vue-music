@@ -3,7 +3,7 @@
     <swiper ref="mySwiper" :options="swiperOptions">
       <swiper-slide v-for="(item, index) in scrollData" :key="index">
         <!-- 一行一列滚动 -->
-        <div class="scroll-wrapper">
+        <div class="scroll-wrapper" @click="onClick(item.id)">
           <img :src="item.picUrl" />
           <p>{{ item.name }}</p>
         </div>
@@ -43,9 +43,14 @@ export default {
           /* 触摸滑动后是否继续轮播 */
           disableOnInteraction: false,
         },
-        updateOnImagesReady : true,
+        updateOnImagesReady: true,
       },
     };
+  },
+  methods: {
+    onClick(id) {
+      this.$emit("onSongSheet", id);
+    },
   },
 };
 </script>

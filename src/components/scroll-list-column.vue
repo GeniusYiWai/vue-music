@@ -2,41 +2,50 @@
   <div>
     <swiper ref="mySwiper" :options="swiperOptions">
       <swiper-slide v-for="(song, index) in scrollData" :key="index">
-        <div class="song-wrapper">
+        <div>
           <!-- 由于组件需要在不同地方使用 传入的数据不同 所以需要对传入数据进行判断 才能正常展示图片和文字 -->
-
           <!-- 显示歌曲 -->
           <template v-if="song.al">
-            <img :src="song.al.picUrl" />
-            <p class="name">
-              {{ song.al.name | ellipsis(20) }}
-              <span class="singer">-{{ song.ar[0].name | ellipsis(20) }}</span>
-            </p>
+            <div class="song-wrapper" @click="onMusicClick(song.id)">
+              <img :src="song.al.picUrl" />
+              <p class="name">
+                {{ song.name | ellipsis(20) }}
+                <span class="singer"
+                  >-{{ song.ar[0].name | ellipsis(20) }}</span
+                >
+              </p>
+            </div>
           </template>
-          <!-- 显示歌单 -->
+          <!-- 显示新歌 -->
           <template v-if="song.album">
-            <img :src="song.album.blurPicUrl" />
-            <p class="name">
-              {{ song.album.name | ellipsis(20) }}
-              <span class="singer"
-                >-{{ song.album.artists[0].name | ellipsis(20) }}</span
-              >
-            </p>
+            <div class="song-wrapper" @click="onMusicClick(song.id)">
+              <img :src="song.album.blurPicUrl" />
+              <p class="name">
+                {{ song.album.name | ellipsis(20) }}
+                <span class="singer"
+                  >-{{ song.album.artists[0].name | ellipsis(20) }}</span
+                >
+              </p>
+            </div>
           </template>
 
           <template v-if="song.company">
-            <img :src="song.blurPicUrl" />
-            <p class="name">
-              {{ song.name | ellipsis(20) }}
-              <span class="singer">-{{ song.company | ellipsis(20) }}</span>
-            </p>
+            <div class="song-wrapper">
+              <img :src="song.blurPicUrl" />
+              <p class="name">
+                {{ song.name | ellipsis(20) }}
+                <span class="singer">-{{ song.company | ellipsis(20) }}</span>
+              </p>
+            </div>
           </template>
           <!-- 显示排行榜 -->
           <template v-if="song.updateFrequency">
-            <img :src="song.coverImgUrl" />
-            <p class="name">
-              {{ song.name | ellipsis(20) }}
-            </p>
+            <div class="song-wrapper">
+              <img :src="song.coverImgUrl" />
+              <p class="name">
+                {{ song.name | ellipsis(20) }}
+              </p>
+            </div>
           </template>
         </div>
       </swiper-slide> </swiper
@@ -72,6 +81,13 @@ export default {
       },
     };
   },
+  methods: {
+    //播放音乐
+    onMusicClick(id) {
+      //触发音乐播放事件 传递点击音乐的id
+      this.$emit("onMusicPlay", id);
+    },
+  },
 };
 </script>
 
@@ -81,6 +97,7 @@ export default {
   height: 70px;
   margin: 5px 10px;
   align-items: center;
+
   img {
     height: 70px;
     object-fit: cover;

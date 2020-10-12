@@ -1,9 +1,21 @@
 <template>
   <div class="rank-container">
-    <Summary summary="榜单推荐" />
-    <ScrollListColumn :scrollData="recRankList" />
-    <Summary summary="官方榜" />
-    <RankItem v-for="(rank, index) in rankList" :key="index" :rankData="rank" />
+    <van-loading
+      type="spinner"
+      color="#1989fa"
+      v-if="loading"
+      class="loading"
+    />
+    <div v-if="!loading">
+      <Summary summary="榜单推荐" />
+      <ScrollListColumn :scrollData="recRankList" />
+      <Summary summary="官方榜" />
+      <RankItem
+        v-for="(rank, index) in rankList"
+        :key="index"
+        :rankData="rank"
+      />
+    </div>
   </div>
 </template>
 
@@ -24,6 +36,7 @@ export default {
       rankList: [],
       //推荐榜数据
       recRankList: [],
+      loading: true,
     };
   },
   created() {
@@ -41,10 +54,17 @@ export default {
       this.recRankList = data.list.filter((x) => {
         return x.tracks.length == 0;
       });
+      this.loading = false;
     },
   },
 };
 </script>
 
 <style scoped lang='less'>
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 </style>

@@ -3,11 +3,14 @@
     <van-tabs v-model="active" animated>
       <van-tab title="新歌">
         <!-- 2行3列 -->
-        <ScrollListColumn :scrollData="newSongsData" />
+        <ScrollListColumn
+          :scrollData="newSongsData"
+          @onMusicPlay="onMusicPlay"
+        />
       </van-tab>
       <van-tab title="新碟">
         <!-- 1行1列 -->
-        <ScrollList :scrollData="newAlbumsData" />
+        <ScrollList :scrollData="newAlbumsData" @onSongSheet="onSongSheet" />
       </van-tab>
     </van-tabs>
   </div>
@@ -36,6 +39,15 @@ export default {
     this.loadNewAlbums();
   },
   methods: {
+    onSongSheet(id) {
+      console.log('album')
+      console.log(id);
+      this.$router.push("/songsheet?from=album");
+      this.$store.commit("setSongSheetId", id);
+    },
+    onMusicPlay(id) {
+      this.$store.commit("setMusicId", id);
+    },
     async loadNewSongs() {
       const { data } = await getNewSongs();
       this.newSongsData = data.data.splice(0, 20);

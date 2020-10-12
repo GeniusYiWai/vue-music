@@ -29,8 +29,16 @@ const routes = [{
         component: () => import('../views/my/'),
       },
     ]
-  }
 
+  },
+  {
+    path: "/songsheet",
+    name: 'songsheet',
+    meta: {
+      showTabbar: false
+    },
+    component: () => import('../views/songsheet/'),
+  }
 
 ]
 

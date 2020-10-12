@@ -2,15 +2,10 @@
 
 import request from '@/utils/request'
 
-
-
-
-
 /*
 获取首页图标入口列表
 
 */
-
 export const getIcons = () => {
     return request({
         method: 'GET',
@@ -18,13 +13,6 @@ export const getIcons = () => {
 
     })
 }
-
-
-
-
-
-
-
 
 
 /*

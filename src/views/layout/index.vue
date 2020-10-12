@@ -31,13 +31,12 @@ export default {
 </script>
 
 <style scoped lang='less'>
+
 .layout-container {
-  padding-bottom: 50px  !important;
-  // width: 100%;
-  // height: 100%;
-  // overflow: hidden;
-  box-sizing: border-box;
+  padding-bottom: 120px;
+
 }
+
 .van-tabbar {
   z-index: 99;
 }
