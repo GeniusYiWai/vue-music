@@ -8,12 +8,13 @@
     />
     <div v-if="!loading">
       <Summary summary="榜单推荐" />
-      <ScrollListColumn :scrollData="recRankList" />
+      <ScrollListColumn :scrollData="recRankList" @onSongSheet="onSongSheet" />
       <Summary summary="官方榜" />
       <RankItem
         v-for="(rank, index) in rankList"
         :key="index"
         :rankData="rank"
+        @click.native="onSongSheet(rank.id)"
       />
     </div>
   </div>
@@ -44,6 +45,10 @@ export default {
     this.loadRankBrief();
   },
   methods: {
+    onSongSheet(id) {
+      this.$router.push("/songsheet?from=songsheet");
+      this.$store.commit("setSongSheetId", id);
+    },
     async loadRankBrief() {
       const { data } = await rankBrief();
       //过滤出官方榜数据

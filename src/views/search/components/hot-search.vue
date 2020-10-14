@@ -11,6 +11,7 @@
         v-for="(hot, index) in hotSearch"
         :key="index"
         class="hotSearch-wrapper"
+        @click="onClick(hot)"
       >
         <p
           class="index"
@@ -42,6 +43,9 @@ export default {
   },
   mounted() {},
   methods: {
+    onClick(hot) {
+      this.$emit("search", hot.searchWord);
+    },
     async loadHotSearch() {
       const { data } = await hotSearch();
       this.hotSearch = data.data;

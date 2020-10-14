@@ -17,6 +17,7 @@
     "vue-aplayer": "^1.6.1",
     "vue-awesome-swiper": "^4.1.1",
     "vue-router": "^3.2.0",
+    "vue-video-player": "^5.0.2",
     "vuex": "^3.4.0"
   },
   "devDependencies": {

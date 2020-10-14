@@ -16,7 +16,7 @@ import { login } from "@/api/my";
 import Music from "./views/music";
 export default {
   created() {
-    // this.login();
+    this.login();
   },
   data() {
     return {

@@ -3,11 +3,14 @@
     <!-- 视频封面 -->
 
     <div class="video-cover-wrapper" v-show="!isPlayVideo">
-      <img :src="videoData.data.coverUrl" class="video-cover" />
+      <img
+        :src="videoData.cover || videoData.data.coverUrl"
+        class="video-cover"
+      />
       <p class="playTime">
         <!-- 播放次数 -->
         <van-icon name="fire-o" />
-        {{ videoData.data.playTime }}
+        {{ videoData.playCount || videoData.data.playTime }}
       </p>
       <van-icon name="play-circle-o" class="playIcon" @click="onPlay" />
     </div>
@@ -18,13 +21,12 @@
       controls
       class="videoPlyer"
       ref="video"
-      
     ></video>
     <!-- 视频标题 -->
-    <p class="video-title">{{ videoData.data.title }}</p>
+    <p class="video-title">{{ videoData.name || videoData.data.title }}</p>
     <div class="video-info">
       <!-- 视频作者 -->
-      <div class="video-author">
+      <div class="video-author" v-if="videoData.data">
         <!-- 作者头像 -->
         <img
           :src="videoData.data.creator ? videoData.data.creator.avatarUrl : ''"
@@ -35,8 +37,12 @@
           videoData.data.creator ? videoData.data.creator.nickname : ""
         }}</span>
       </div>
+
+      <div class="briefDesc">
+        {{ videoData.briefDesc }}
+      </div>
       <!-- 视频操作 -->
-      <div class="action">
+      <div class="action" v-if="videoData.data">
         <van-icon name="thumb-circle-o" :badge="videoData.data.praisedCount" />
         <van-icon name="comment-o" :badge="videoData.data.commentCount" />
         <van-icon name="ellipsis" />
@@ -47,6 +53,8 @@
 
 <script>
 import { videoUrl } from "@/api/video";
+import { mvUrl } from "@/api/mv";
+
 export default {
   props: {
     // 视频详情
@@ -75,8 +83,15 @@ export default {
       this.$emit("onPlay", this.index);
     },
     async onPlayVideo() {
-      const { data } = await videoUrl(this.videoData.data.vid);
-      this.videoUrl = data.urls[0] ? data.urls[0].url : "";
+      if (this.videoData.data) {
+        const { data } = await videoUrl(this.videoData.data.vid);
+
+        this.videoUrl = data.urls[0] ? data.urls[0].url : "";
+      } else {
+        const { data } = await mvUrl(this.videoData.id);
+
+        this.videoUrl = data.data ? data.data.url : "";
+      }
     },
     pause() {
       this.$refs.video.pause();
@@ -131,6 +146,9 @@ export default {
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
+    .briefDesc {
+      font-size: 14px;
+    }
     .video-author {
       display: flex;
       align-items: center;

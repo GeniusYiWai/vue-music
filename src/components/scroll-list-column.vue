@@ -40,7 +40,7 @@
           </template>
           <!-- 显示排行榜 -->
           <template v-if="song.updateFrequency">
-            <div class="song-wrapper">
+            <div class="song-wrapper" @click="onRankClick(song.id)">
               <img :src="song.coverImgUrl" />
               <p class="name">
                 {{ song.name | ellipsis(20) }}
@@ -86,6 +86,10 @@ export default {
     onMusicClick(id) {
       //触发音乐播放事件 传递点击音乐的id
       this.$emit("onMusicPlay", id);
+    },
+    //查看排行榜
+    onRankClick(id) {
+      this.$emit("onSongSheet", id);
     },
   },
 };

@@ -6,9 +6,14 @@
         :key="index"
         class="history-item"
       >
-        <van-button type="default" size="mini" icon="delete" dot>{{
-          item | ellipsis(10)
-        }}</van-button>
+        <van-button
+          type="default"
+          size="mini"
+          icon="delete"
+          dot
+          @click="onClick(item)"
+          >{{ item | ellipsis(10) }}</van-button
+        >
       </swiper-slide>
     </swiper>
   </div>
@@ -25,14 +30,10 @@ export default {
         pagination: {
           el: ".swiper-pagination",
         },
-        scrollbar: {
-          el: ".swiper-scrollbar",
-        },
         //每行显示数量
         slidesPerView: "auto",
         //不自动贴合
         freeMode: true,
-        updateOnImagesReady: true,
       },
     };
   },
@@ -41,6 +42,9 @@ export default {
   },
   mounted() {},
   methods: {
+    onClick(history) {
+      this.$emit("search", history);
+    },
     loadSearchHistory() {
       let histories = getItem("search-history");
       this.searchHistory = histories ? histories : [];
